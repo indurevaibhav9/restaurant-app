@@ -1,0 +1,66 @@
+<html>
+
+<body>
+    <div class="bg-lime-200 h-full w-full  m-0 flex justify-center align-middle">
+        <form [formGroup]="restaurantDetails" (ngSubmit)="handleSubmit()" class="p-12 m-12 w-1/2 h-auto  bg-slate-50 text-black">
+            <div>
+                <h1 class="text-2xl align-middle text-center mb-10  ">Add a Restaurant</h1>
+            </div>
+
+            <div class="p-5">
+                <p class="text-xl py-2 ">Restaurant Information</p>
+                <p>Provide necessary information of your faviourite Restaurant</p>
+            </div>
+            <hr>
+            <div class="p-5">
+                <div class="my-2 flex justify-between">
+                    <label for="restaurant-name">Restaurant Name : </label>
+                    <input formControlName="name" class="mx-11 border-2" placeholder="Restaurant Name" id="restaurant-name" type="text">
+                </div>
+                <div class="my-2 flex justify-between">
+                    <label for="owner">Owner Name : </label>
+                    <input formControlName="owner" placeholder="Owner Name" class="mx-11 border-2" id="owner" type="text">
+                </div>
+                <div class="my-2">
+                    <label>Address 
+                        <div class="flex justify-between">
+                            <label for="street">Street Name : </label>
+                            <input formControlName="street" placeholder="Street Name" class="mx-11 border-2" type="text" id="street">
+                        </div>
+                        <div class="flex justify-between">
+                            <label for="city">City : </label>
+                            <input formControlName="city" placeholder="City" class="mx-11 border-2" type="text" id="city">
+                        </div>
+                        <div class="flex justify-between">
+                            <label for="zipcode">Zipcode : </label>
+                            <input formControlName="zipcode" placeholder="Zipcode" class="mx-11 border-2" type="text" id="zipcode">
+                        </div>
+                    </label>
+                   
+                </div>
+                <div class="my-2 flex justify-between">
+                    <label for="type">Restaurant Type : </label>
+                    <input formControlName="type" placeholder="Restaurant Type" class="mx-11 border-2" id="type" type="text">
+                </div>
+                <div class="my-2 ">
+                    <label>Restaurant Contact Details :
+                        <div class="flex justify-between">
+                            <label for="phone">Phone Number : </label>
+                            <input formControlName="phone" placeholder="Phone Number" class="mx-11 border-2" type="number" id="phone">
+                        </div>
+                        <div class="flex justify-between">
+                            <label for="email">Email : </label>
+                            <input formControlName="email" placeholder="Email" class="mx-11 border-2" type="email" id="email">
+                        </div>
+                    </label>
+                    <div class="flex justify-center align-middle m-5">
+                        <button type="submit" class="p-2 border-2 rounded">submit</button>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
