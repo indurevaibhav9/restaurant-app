@@ -4,8 +4,8 @@ import { DetailsFormComponent } from './screen/onboarding/details-form/details-f
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  {path:'onboarding/details-form', component:DetailsFormComponent},
-  {path:'home', component: HomeComponent}
+  { path: 'onboarding/details-form', component: DetailsFormComponent },
+  { path: 'home', component: HomeComponent }
 ];
 
 @NgModule({

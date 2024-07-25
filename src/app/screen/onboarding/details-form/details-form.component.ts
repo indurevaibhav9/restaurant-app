@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormControl, FormControlName, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { RestaurantAddRequest } from 'src/app/models/RestaurantAddRequest';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-details-form',
@@ -8,26 +9,30 @@ import { RestaurantAddRequest } from 'src/app/models/RestaurantAddRequest';
   styleUrls: ['./details-form.component.scss']
 })
 export class DetailsFormComponent {
+  restaurantAddRequest: RestaurantAddRequest = new RestaurantAddRequest();
+  restaurantDetails: FormGroup;
 
-  restaurantAddRequest :RestaurantAddRequest= new RestaurantAddRequest();
-  restaurantDetails: FormGroup = new FormGroup({
-    name :   new FormControl(''),
-    owner : new FormControl(''),
-    street: new FormControl(''),
-    city : new FormControl(''),
-    zipcode:new FormControl(''),
-    phone: new FormControl(''),
-    email: new FormControl(''),
-    type: new FormControl('')
-  })
-  handleSubmit(){
-    console.log(this.restaurantDetails.value)
+  constructor(private fb: FormBuilder, private backend: BackendService) {
+    this.restaurantDetails = this.fb.group({
+      name: [''],
+      owner: [''],
+      street: [''],
+      city: [''],
+      zipcode: [''],
+      phone: [''],
+      email: [''],
+      type: ['']
+    });
+  }
+
+  handleSubmit() {
+    console.log(this.restaurantDetails.value);
     this.createRequest(this.restaurantDetails);
-    alert('Restaurant details submitted successfully')
+    alert('Restaurant details submitted successfully');
     this.restaurantDetails.reset();
   }
 
-  createRequest(details: FormGroup){
+  createRequest(details: FormGroup) {
     this.restaurantAddRequest.name = details.value['name'];
     this.restaurantAddRequest.owner = details.value['owner'];
     this.restaurantAddRequest.street = details.value['street'];
@@ -35,7 +40,13 @@ export class DetailsFormComponent {
     this.restaurantAddRequest.zipcode = details.value['zipcode'];
     this.restaurantAddRequest.type = details.value['type'];
     this.restaurantAddRequest.contact = details.value['phone'];
-    console.log(this.restaurantAddRequest);
+    // console.log(this.restaurantAddRequest);
+    this.processRequest(this.restaurantAddRequest);
+
   }
 
+  processRequest(restaurantAddRequestData: RestaurantAddRequest){
+ 
+   const message =  this.backend.onboardRestaurant(restaurantAddRequestData);
+  }
 }
