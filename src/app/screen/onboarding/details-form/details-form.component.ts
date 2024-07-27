@@ -1,18 +1,23 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RestaurantAddRequest } from 'src/app/models/RestaurantAddRequest';
 import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-details-form',
   templateUrl: './details-form.component.html',
-  styleUrls: ['./details-form.component.scss']
+  styleUrls: ['./details-form.component.scss'],
 })
 export class DetailsFormComponent {
   restaurantAddRequest: RestaurantAddRequest = new RestaurantAddRequest();
   restaurantDetails: FormGroup;
 
-  constructor(private fb: FormBuilder, private backend: BackendService) {
+  constructor(
+    private fb: FormBuilder,
+    private backend: BackendService,
+    private router: Router
+  ) {
     this.restaurantDetails = this.fb.group({
       name: [''],
       owner: [''],
@@ -21,7 +26,7 @@ export class DetailsFormComponent {
       zipcode: [''],
       phone: [''],
       email: [''],
-      type: ['']
+      type: [''],
     });
   }
 
@@ -39,14 +44,18 @@ export class DetailsFormComponent {
     this.restaurantAddRequest.city = details.value['city'];
     this.restaurantAddRequest.zipcode = details.value['zipcode'];
     this.restaurantAddRequest.type = details.value['type'];
-    this.restaurantAddRequest.contact = details.value['phone'];
+    this.restaurantAddRequest.phone = details.value['phone'];
+    this.restaurantAddRequest.email = details.value['email'];
     // console.log(this.restaurantAddRequest);
     this.processRequest(this.restaurantAddRequest);
-
   }
 
-  processRequest(restaurantAddRequestData: RestaurantAddRequest){
- 
-   const message =  this.backend.onboardRestaurant(restaurantAddRequestData);
+  processRequest(restaurantAddRequestData: RestaurantAddRequest) {
+    const serializedData = JSON.stringify(restaurantAddRequestData);
+    this.router.navigate(['/popup'], {
+      queryParams: { restaurantAddRequestData: serializedData },
+    });
+
+    const message = this.backend.onboardRestaurant(restaurantAddRequestData);
   }
 }

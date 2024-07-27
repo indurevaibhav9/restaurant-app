@@ -2,14 +2,14 @@
 @tailwind base;
 @tailwind utilities;
 
-html, body {
-    height: 100%;
-    margin: 0;
-  }
-  
-  app-root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
