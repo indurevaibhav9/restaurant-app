@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, RequiredValidator, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RestaurantAddRequest } from 'src/app/models/RestaurantAddRequest';
 import { BackendService } from 'src/app/services/backend.service';
@@ -19,14 +19,14 @@ export class DetailsFormComponent {
     private router: Router
   ) {
     this.restaurantDetails = this.fb.group({
-      name: [''],
-      owner: [''],
-      street: [''],
-      city: [''],
-      zipcode: [''],
-      phone: [''],
-      email: [''],
-      type: [''],
+      name: ['',[Validators.required, Validators.minLength(2)]],
+      owner: ['',[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      street: ['',[Validators.required]],
+      city: ['',[Validators.required]],
+      zipcode: ['',[Validators.required]],
+      phone: ['',[Validators.required,Validators.pattern('^[1-9]+$') ]],
+      email: ['',[Validators.required, Validators.email]],
+      type: ['',Validators.required],
     });
   }
 
@@ -40,12 +40,12 @@ export class DetailsFormComponent {
   createRequest(details: FormGroup) {
     this.restaurantAddRequest.name = details.value['name'];
     this.restaurantAddRequest.owner = details.value['owner'];
-    this.restaurantAddRequest.street = details.value['street'];
+    this.restaurantAddRequest.streetName = details.value['street'];
     this.restaurantAddRequest.city = details.value['city'];
-    this.restaurantAddRequest.zipcode = details.value['zipcode'];
+    this.restaurantAddRequest.zipCode = details.value['zipcode'];
     this.restaurantAddRequest.type = details.value['type'];
-    this.restaurantAddRequest.phone = details.value['phone'];
-    this.restaurantAddRequest.email = details.value['email'];
+    this.restaurantAddRequest.contact = details.value['phone'];
+    // this.restaurantAddRequest.email = details.value['email'];
     // console.log(this.restaurantAddRequest);
     this.processRequest(this.restaurantAddRequest);
   }

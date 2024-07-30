@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BackendService } from '../../../services/backend.service';
 
 @Component({
   selector: 'app-all-restaurants',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./all-restaurants.component.scss']
 })
 export class AllRestaurantsComponent {
+  allRestaurants : Object = {}
+  constructor(private backendService: BackendService){
+  }
 
+  getAllResto(){
+    this.allRestaurants = this.backendService.getAllRestaurants()
+    console.log(this.allRestaurants)
+  }
 }

@@ -6,7 +6,7 @@ package-lock.json
 /tmp
 /out-tsc
 /bazel-out
-.editorconfig  // 
+.editorconfig
 # Node
 /node_modules
 npm-debug.log

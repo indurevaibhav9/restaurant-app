@@ -1,10 +1,10 @@
 export class RestaurantAddRequest{
     name : string = ''
     owner: string = ''
-    street : string = ''
+    streetName : string = ''
     city : string = ''
-    zipcode: number = 0
+    zipCode: number = 0
     type : string = ''
-    phone: number = 0
-    email: string = ''
+    contact: number = 0
+    emailId: string = ''
 }
