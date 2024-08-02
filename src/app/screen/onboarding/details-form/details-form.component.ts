@@ -25,7 +25,7 @@ export class DetailsFormComponent {
       city: ['',[Validators.required]],
       zipcode: ['',[Validators.required]],
       phone: ['',[Validators.required,Validators.pattern('^[1-9]+$') ]],
-      email: ['',[Validators.required, Validators.email]],
+      email: ['',[Validators.required]],
       type: ['',Validators.required],
     });
   }
@@ -45,16 +45,15 @@ export class DetailsFormComponent {
     this.restaurantAddRequest.zipCode = details.value['zipcode'];
     this.restaurantAddRequest.type = details.value['type'];
     this.restaurantAddRequest.contact = details.value['phone'];
-    
+    this.restaurantAddRequest.email = details.value['email'];
     this.processRequest(this.restaurantAddRequest);
   }
 
   processRequest(restaurantAddRequestData: RestaurantAddRequest) {
+    const message = this.backend.onboardRestaurant(restaurantAddRequestData);
     const jsonDataForPopup = JSON.stringify(restaurantAddRequestData);
     this.router.navigate(['/popup'], {
       queryParams: { restaurantAddRequestData: jsonDataForPopup },
     });
-
-    const message = this.backend.onboardRestaurant(restaurantAddRequestData);
   }
 }

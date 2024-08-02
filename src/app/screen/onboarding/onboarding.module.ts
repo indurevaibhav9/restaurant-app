@@ -4,6 +4,7 @@ import { DetailsFormComponent } from './details-form/details-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RestaurantAddedPopupComponent } from './restaurant-added-popup/restaurant-added-popup.component';
 import { AllRestaurantsComponent } from './all-restaurants/all-restaurants.component';
+import { RestaurantCardComponent } from './restaurant-card/restaurant-card.component';
 
 
 
@@ -11,7 +12,9 @@ import { AllRestaurantsComponent } from './all-restaurants/all-restaurants.compo
   declarations: [
     DetailsFormComponent,
     RestaurantAddedPopupComponent,
-    AllRestaurantsComponent
+    AllRestaurantsComponent,
+    RestaurantCardComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -24,18 +27,3 @@ import { AllRestaurantsComponent } from './all-restaurants/all-restaurants.compo
 })
 export class OnboardingModule { }
 
-export interface RestaurantAddressDetails {
-  id: number;
-  streetName: string;
-  city: string;
-  zipCode: number;
-}
-export interface RestaurantDetails {
-  id: number;
-  name: string;
-  ownerName: string;
-  addressDetails: RestaurantAddressDetails;
-  restroType: string;
-  contact: string;
-  email: string;
-}

@@ -25,9 +25,9 @@ export class RestaurantAddedPopupComponent {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      const serializedData = params['restaurantAddRequestData'];
-      if (serializedData) {
-        this.restaurantDetails = JSON.parse(serializedData);
+      const data = params['restaurantAddRequestData'];
+      if (data) {
+        this.restaurantDetails = JSON.parse(data);
       }
     });
   }

@@ -1,0 +1,26 @@
+<div class="max-w-lg rounded overflow-hidden shadow-lg hover:shadow-2xl hover:bg-gradient-to-r from-lime-200 to-green-200  hover:scale-105 transition-transform duration-300 ease-in-out p-6 m-4 bg-gradient-to-r from-green-100 to-blue-100 opacity-90 text-xl">
+  <button (click)="deleteRestaurant(restaurant.id)" class="absolute top-2 h-10 right-2 bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 rounded-full p-2 text-xs font-semibold">
+    Delete
+  </button>
+  <div class="font-bold text-gray-800 text-xl mb-2">{{ restaurant.name || "myRestoName" }}</div>
+  <p class="text-gray-700">
+    Owner: <span class="text-green-900">{{ restaurant.ownerName || "myResto owner" }}</span>
+  </p>
+  <p class="text-gray-700 opacity-100">
+    Type: <span class="text-blue-900">{{ restaurant.restroType || "veg" }}</span>
+  </p>
+  <p class="text-gray-700">
+    Phone: <span class="text-red-900">{{ restaurant.contact || "24959279572" }}</span>
+  </p>
+  <p class="text-gray-700">
+    Email: <span class="text-yellow-900">{{ restaurant.email || 'vAjdf@gmail.com' }}</span>
+  </p>
+  <div class="mt-4 text-gray-700">
+    <div class="font-semibold">Address:</div>
+    <div>
+      <span class="text-purple-900">{{ restaurant.addressDetails.streetName || "mg road" }}</span>, 
+      <span class="text-pink-900">{{ restaurant.addressDetails.city || 'pune' }}</span>, 
+      <span class="text-indigo-900">{{ restaurant.addressDetails.zipCode || '247397' }}</span>
+    </div>
+  </div>
+</div>

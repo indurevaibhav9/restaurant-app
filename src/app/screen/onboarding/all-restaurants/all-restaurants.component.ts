@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BackendService } from '../../../services/backend.service';
+import { RestaurantDetails } from '../../../models/RestaurantDetails';
 
 @Component({
   selector: 'app-all-restaurants',
@@ -8,9 +9,13 @@ import { BackendService } from '../../../services/backend.service';
 })
 export class AllRestaurantsComponent {
   allRestaurants: any = [];
-  constructor(private backendService: BackendService) {}
+  constructor(private backendService: BackendService) {
+    this.getAllResto();
+  }
 
+  
+  restaurants : RestaurantDetails[] = []
   getAllResto(): void {
-    this.backendService.getRestroDetails();
+    this.restaurants = this.backendService.getRestroDetails();
   }
 }

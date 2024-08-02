@@ -7,6 +7,11 @@ import { AllRestaurantsComponent } from './screen/onboarding/all-restaurants/all
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  {
     path: 'onboarding/details-form',
     component: DetailsFormComponent
   },

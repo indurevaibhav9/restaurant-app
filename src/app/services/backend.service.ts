@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RestaurantAddRequest } from '../models/RestaurantAddRequest';
 import { Observable } from 'rxjs';
-import { RestaurantDetails } from '../screen/onboarding/onboarding.module';
+import { RestaurantDetails } from '../models/RestaurantDetails';
 @Injectable({
   providedIn: 'root',
 })
@@ -12,7 +12,7 @@ export class BackendService {
   onboardRestaurant(restaurantAddRequest: RestaurantAddRequest) {
     this.http
       .post(
-        'https://e44e-2401-4900-1c7e-6368-c478-4e62-3a0b-6334.ngrok-free.app/restro/createRestro',
+        'https://1ca7-2401-4900-1c44-8479-5099-aa35-5647-41a7.ngrok-free.app/restro/createRestro',
         restaurantAddRequest
       )
       .subscribe({
@@ -27,12 +27,13 @@ export class BackendService {
       });
   }
 
- allRestuantData: RestaurantDetails[] = []
+//  allRestuantData:RestaurantDetails[] = []
+  allRestuantData : any
  
   getRestroDetails() {
     this.http
       .get(
-        'https://2866-2401-4900-1c44-8479-4d1e-678a-eb44-1d62.ngrok-free.app/restro/getRestroDetails',
+        'https://1ca7-2401-4900-1c44-8479-5099-aa35-5647-41a7.ngrok-free.app/restro/getRestroDetails',
         {
           responseType: 'json',
           headers: new HttpHeaders({
@@ -40,12 +41,18 @@ export class BackendService {
           }),
         }
       ) 
-      .subscribe({
-        next: (response ) => console.log(response),
+      .subscribe({ 
+        next: (response ) => {
+          this.allRestuantData = response
+          console.log(response)
+        },
         error: (err) => {
           console.log(err);
         },
       });
+
+      return this.allRestuantData
+
   }
 
   deleteRestaurant() {}
