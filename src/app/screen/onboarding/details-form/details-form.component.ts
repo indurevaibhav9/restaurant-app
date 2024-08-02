@@ -45,15 +45,14 @@ export class DetailsFormComponent {
     this.restaurantAddRequest.zipCode = details.value['zipcode'];
     this.restaurantAddRequest.type = details.value['type'];
     this.restaurantAddRequest.contact = details.value['phone'];
-    // this.restaurantAddRequest.email = details.value['email'];
-    // console.log(this.restaurantAddRequest);
+    
     this.processRequest(this.restaurantAddRequest);
   }
 
   processRequest(restaurantAddRequestData: RestaurantAddRequest) {
-    const serializedData = JSON.stringify(restaurantAddRequestData);
+    const jsonDataForPopup = JSON.stringify(restaurantAddRequestData);
     this.router.navigate(['/popup'], {
-      queryParams: { restaurantAddRequestData: serializedData },
+      queryParams: { restaurantAddRequestData: jsonDataForPopup },
     });
 
     const message = this.backend.onboardRestaurant(restaurantAddRequestData);

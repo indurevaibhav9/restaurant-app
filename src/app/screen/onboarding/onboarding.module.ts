@@ -23,3 +23,19 @@ import { AllRestaurantsComponent } from './all-restaurants/all-restaurants.compo
   ]
 })
 export class OnboardingModule { }
+
+export interface RestaurantAddressDetails {
+  id: number;
+  streetName: string;
+  city: string;
+  zipCode: number;
+}
+export interface RestaurantDetails {
+  id: number;
+  name: string;
+  ownerName: string;
+  addressDetails: RestaurantAddressDetails;
+  restroType: string;
+  contact: string;
+  email: string;
+}
