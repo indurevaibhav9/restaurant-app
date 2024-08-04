@@ -57,7 +57,7 @@
 
                 </div>
             </div>
-        </form>
-        <!-- <app-restaurant-added-popup [restaurantDetails]="restaurantAddRequest"></app-restaurant-added-popup> -->
+        </form> 
+        <app-restaurant-added-popup *ngIf="isPopupVisible" [restaurantDetails]="restaurantAddRequest" (closePopupEvent)="handleClose($event)"></app-restaurant-added-popup>
     </div>
 

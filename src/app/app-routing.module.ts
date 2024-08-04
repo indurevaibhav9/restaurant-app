@@ -1,9 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DetailsFormComponent } from './screen/onboarding/details-form/details-form.component';
-import { HomeComponent } from './components/home/home.component';
-import { RestaurantAddedPopupComponent } from './screen/onboarding/restaurant-added-popup/restaurant-added-popup.component';
-import { AllRestaurantsComponent } from './screen/onboarding/all-restaurants/all-restaurants.component';
 
 const routes: Routes = [
   {
@@ -13,19 +9,15 @@ const routes: Routes = [
   },
   {
     path: 'onboarding/details-form',
-    component: DetailsFormComponent
+    loadChildren: ()=> import('./screen/onboarding/onboarding.module').then((module)=>module.OnboardingModule)
   },
   {
     path: 'home',
-    component: HomeComponent
-  },
-  {
-    path: 'popup',
-    component: RestaurantAddedPopupComponent
+    loadChildren: ()=> import('./screen/home/home.module').then((module)=>module.HomeModule)
   },
   {
     path: 'all-restaurants',
-    component: AllRestaurantsComponent
+    loadChildren: ()=>import('./screen/all-restros/all-restros.module').then((module)=>module.AllRestrosModule)
   },
 ];
 

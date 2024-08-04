@@ -30,11 +30,11 @@ export class DetailsFormComponent {
     });
   }
 
-  handleSubmit() {
-    console.log(this.restaurantDetails.value);
-    this.createRequest(this.restaurantDetails);
-    alert('Restaurant details submitted successfully');
-    this.restaurantDetails.reset();
+  handleSubmit() {     
+    if(confirm('Restaurant details about to submit')){
+      this.createRequest(this.restaurantDetails);
+      this.restaurantDetails.reset();
+    }
   }
 
   createRequest(details: FormGroup) {
@@ -49,11 +49,33 @@ export class DetailsFormComponent {
     this.processRequest(this.restaurantAddRequest);
   }
 
+  // for popup visibility handle
+  isPopupVisible = false;
+
   processRequest(restaurantAddRequestData: RestaurantAddRequest) {
-    const message = this.backend.onboardRestaurant(restaurantAddRequestData);
-    const jsonDataForPopup = JSON.stringify(restaurantAddRequestData);
-    this.router.navigate(['/popup'], {
-      queryParams: { restaurantAddRequestData: jsonDataForPopup },
-    });
+    // to wait backend response , i have to add .subscribe here 
+    this.backend.onboardRestaurant(restaurantAddRequestData).subscribe({
+      next:(response) =>{
+        this.isPopupVisible = true;
+      },
+      error: (error) => {
+        console.log(error);
+        alert('server is running down , please try after some time')
+      }
+    })
+     
   }
+
+  handleClose(val: boolean){
+    if(val == true){
+      this.isPopupVisible = false;
+    }
+  }
+
+
+
+
+  
+
+
 }

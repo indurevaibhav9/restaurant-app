@@ -3,28 +3,26 @@ import { Injectable } from '@angular/core';
 import { RestaurantAddRequest } from '../models/RestaurantAddRequest';
 import { Observable } from 'rxjs';
 import { RestaurantDetails } from '../models/RestaurantDetails';
+
+
+
 @Injectable({
   providedIn: 'root',
 })
+
+
 export class BackendService {
   constructor(private http: HttpClient) {}
+ 
+  
 
-  onboardRestaurant(restaurantAddRequest: RestaurantAddRequest) {
-    this.http
+  onboardRestaurant(restaurantAddRequest: RestaurantAddRequest): Observable<Object> {
+    return this.http
       .post(
         'https://1ca7-2401-4900-1c44-8479-5099-aa35-5647-41a7.ngrok-free.app/restro/createRestro',
         restaurantAddRequest
       )
-      .subscribe({
-        next: (response) => {
-          console.log('response got from backend is : ', response);
-          return `restaurant added successfully ${response}`;
-        },
-        error: (error) => {
-          console.log('error occured : ', error);
-          return 'something is wrong in onboardrestuarant funcion of backend service';
-        },
-      });
+      
   }
 
 //  allRestuantData:RestaurantDetails[] = []
