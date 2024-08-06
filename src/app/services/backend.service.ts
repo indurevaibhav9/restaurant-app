@@ -25,12 +25,11 @@ export class BackendService {
       
   }
 
-//  allRestuantData:RestaurantDetails[] = []
-  allRestuantData : any
- 
+
   getRestroDetails() {
+    let allRestuantData:RestaurantDetails[] = []
     this.http
-      .get(
+      .get<RestaurantDetails[]>(
         'https://1ca7-2401-4900-1c44-8479-5099-aa35-5647-41a7.ngrok-free.app/restro/getRestroDetails',
         {
           responseType: 'json',
@@ -41,17 +40,20 @@ export class BackendService {
       ) 
       .subscribe({ 
         next: (response ) => {
-          this.allRestuantData = response
+          allRestuantData = response
           console.log(response)
         },
         error: (err) => {
           console.log(err);
+          alert(err.message + " Team is working on It, please try after some time");
         },
       });
 
-      return this.allRestuantData
+      return allRestuantData
 
   }
+ 
+  
 
   deleteRestaurant() {}
 }

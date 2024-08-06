@@ -1,14 +1,10 @@
-export interface addressDetails {
-    id: number;
-    streetName: string;
-    city: string;
-    zipCode: number;
-  }
+import { AddressDetails } from "./AddressDetails";
+
   export interface RestaurantDetails {
     id: number;
     name: string;
     ownerName: string;
-    addressDetails: addressDetails;
+    addressDetails: AddressDetails;
     restroType: string;
     contact: string;
     email: string;

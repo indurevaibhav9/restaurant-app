@@ -63,6 +63,7 @@ export class DetailsFormComponent {
       },
       error: (error) => {
         console.log(error);
+        // error handling for user
         alert('server is running down , please try after some time')
       }
     })
