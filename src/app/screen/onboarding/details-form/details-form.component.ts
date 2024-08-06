@@ -16,22 +16,25 @@ export class DetailsFormComponent {
   constructor(
     private fb: FormBuilder,
     private backend: BackendService,
-    private router: Router
   ) {
     this.restaurantDetails = this.fb.group({
-      name: ['',[Validators.required, Validators.minLength(2)]],
-      owner: ['',[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      street: ['',[Validators.required]],
-      city: ['',[Validators.required]],
-      zipcode: ['',[Validators.required]],
-      phone: ['',[Validators.required,Validators.pattern('^[1-9]+$') ]],
-      email: ['',[Validators.required]],
-      type: ['',Validators.required],
+      name: ['', [Validators.required, Validators.minLength(2), Validators.pattern('^[a-zA-Z ]+$')]],
+      owner: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50), Validators.pattern('^[a-zA-Z ]+$')]],
+      street: ['', [Validators.required]],
+      city: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
+      zipcode: ['', [Validators.required, Validators.pattern('^[1-9][0-9]{5}$')]],
+      phone: ['', [Validators.required, Validators.pattern('^[789][0-9]{9}$')]],
+      email: ['', [Validators.required, Validators.email]],
+      type: ['', Validators.required]
     });
   }
 
+  
+    
+  
+
   handleSubmit() {     
-    if(confirm('Restaurant details about to submit')){
+    if(confirm('Restaurant details about to submit') && this.restaurantDetails.valid){
       this.createRequest(this.restaurantDetails);
       this.restaurantDetails.reset();
     }
