@@ -1,0 +1,93 @@
+<div class="h-full w-full m-0 flex justify-center align-middle">
+    <form [formGroup]="restaurantDetails" (ngSubmit)="handleSubmit()" class="p-12 m-2 w-1/2 bg-slate-50 text-black">
+        <div>
+            <h1 class="text-2xl align-middle text-center mb-10">Add a Restaurant</h1>
+        </div>
+    
+        <div class="p-5">
+            <p class="text-xl py-2">Restaurant Information</p>
+            <p>Provide necessary information of your favourite Restaurant</p>
+        </div>
+        <hr>
+        <div class="p-5">
+            <div class="my-2 flex justify-between">
+                <label for="restaurant-name">Restaurant Name:</label>
+                <input formControlName="name" class="mx-11 border-2 hover:border-orange-300" placeholder="Restaurant Name" id="restaurant-name" type="text">
+                
+            </div>
+            <div *ngIf="restaurantDetails.get('name')?.invalid && (restaurantDetails.get('name')?.dirty || restaurantDetails.get('name')?.touched)" class="text-red-500">
+                <div *ngIf="restaurantDetails.get('name')?.errors?.['required']">Name is required.</div>
+                <div *ngIf="restaurantDetails.get('name')?.errors?.['minlength']">Name must be at least 2 characters long.</div>
+                <div *ngIf="restaurantDetails.get('name')?.errors?.['pattern']">Name can only contain letters and spaces.</div>
+            </div>
+            <div class="my-2 flex justify-between">
+                <label for="owner">Owner Name:</label>
+                <input formControlName="owner" placeholder="Owner Name" class="mx-11 border-2 hover:border-orange-300" id="owner" type="text">
+                
+            </div>
+            <div *ngIf="restaurantDetails.get('owner')?.invalid && (restaurantDetails.get('owner')?.dirty || restaurantDetails.get('owner')?.touched)" class="text-red-500">
+                <div *ngIf="restaurantDetails.get('owner')?.errors?.['required']">Owner name is required.</div>
+                <div *ngIf="restaurantDetails.get('owner')?.errors?.['minlength']">Owner name must be at least 2 characters long.</div>
+                <div *ngIf="restaurantDetails.get('owner')?.errors?.['maxlength']">Owner name cannot be more than 50 characters long.</div>
+                <div *ngIf="restaurantDetails.get('owner')?.errors?.['pattern']">Owner name can only contain letters and spaces.</div>
+            </div>
+            <div class="my-2 flex justify-between">
+                <label for="street">Street Name:</label>
+                <input formControlName="street" placeholder="Street Name" class="mx-11 border-2 hover:border-orange-300" type="text" id="street">
+                
+            </div>
+            <div *ngIf="restaurantDetails.get('street')?.invalid && (restaurantDetails.get('street')?.dirty || restaurantDetails.get('street')?.touched)" class="text-red-500">
+                <div *ngIf="restaurantDetails.get('street')?.errors?.['required']">Street name is required.</div>
+            </div>
+            <div class="my-2 flex justify-between">
+                <label for="city">City:</label>
+                <input formControlName="city" placeholder="City" class="mx-11 border-2 hover:border-orange-300" type="text" id="city">
+                
+            </div>
+            <div *ngIf="restaurantDetails.get('city')?.invalid && (restaurantDetails.get('city')?.dirty || restaurantDetails.get('city')?.touched)" class="text-red-500">
+                <div *ngIf="restaurantDetails.get('city')?.errors?.['required']">City is required.</div>
+                <div *ngIf="restaurantDetails.get('city')?.errors?.['pattern']">City can only contain letters and spaces.</div>
+            </div>
+            <div class="my-2 flex justify-between">
+                <label for="zipcode">Zipcode:</label>
+                <input formControlName="zipcode" placeholder="Zipcode" class="mx-11 border-2 hover:border-orange-300" type="text" id="zipcode">
+                
+            </div>
+            <div *ngIf="restaurantDetails.get('zipcode')?.invalid && (restaurantDetails.get('zipcode')?.dirty || restaurantDetails.get('zipcode')?.touched)" class="text-red-500">
+                <div *ngIf="restaurantDetails.get('zipcode')?.errors?.['required']">Zipcode is required.</div>
+                <div *ngIf="restaurantDetails.get('zipcode')?.errors?.['pattern']">Zipcode must be a 6-digit number.</div>
+            </div>
+            <div class="my-2 flex justify-between">
+                <label for="type">Restaurant Type:</label>
+                <input formControlName="type" placeholder="Restaurant Type" class="mx-11 border-2 hover:border-orange-300" id="type" type="text">
+                
+            </div>
+            <div *ngIf="restaurantDetails.get('type')?.invalid && (restaurantDetails.get('type')?.dirty || restaurantDetails.get('type')?.touched)" class="text-red-500">
+                <div *ngIf="restaurantDetails.get('type')?.errors?.['required']">Restaurant type is required.</div>
+            </div>
+            <div class="my-2 flex justify-between">
+                <label for="phone">Phone Number:</label>
+                <input formControlName="phone" placeholder="Phone Number" class="mx-11 border-2 hover:border-orange-300" type="text" id="phone">
+                
+            </div>
+            <div *ngIf="restaurantDetails.get('phone')?.invalid && (restaurantDetails.get('phone')?.dirty || restaurantDetails.get('phone')?.touched)" class="text-red-500">
+                <div *ngIf="restaurantDetails.get('phone')?.errors?.['required']">Phone number is required.</div>
+                <div *ngIf="restaurantDetails.get('phone')?.errors?.['pattern']">Phone number must be a 10-digit number starting with 7, 8, or 9.</div>
+            </div>
+            <div class="my-2 flex justify-between">
+                <label for="email">Email:</label>
+                <input formControlName="email" placeholder="Email" class="mx-11 border-2 hover:border-orange-300" type="text" id="email">
+                
+            </div>
+            <div *ngIf="restaurantDetails.get('email')?.invalid && (restaurantDetails.get('email')?.dirty || restaurantDetails.get('email')?.touched)" class="text-red-500">
+                <div *ngIf="restaurantDetails.get('email')?.errors?.['required']">Email is required.</div>
+                <div *ngIf="restaurantDetails.get('email')?.errors?.['email']">Invalid email format.</div>
+            </div>
+            <div class="flex justify-center align-middle m-5">
+                <button type="submit" class="p-2 border-2 rounded hover:bg-green-300">Submit</button>
+            </div>
+        </div>
+    </form>
+    <app-restaurant-added-popup *ngIf="isPopupVisible" [restaurantDetails]="restaurantAddRequest" (closePopupEvent)="handleClose($event)"></app-restaurant-added-popup>
+</div>
+

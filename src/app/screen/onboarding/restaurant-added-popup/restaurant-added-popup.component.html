@@ -1,0 +1,41 @@
+<div class="fixed z-50 inset-0 flex items-center justify-center overflow-hidden">
+  <div class="fixed inset-0 transition-opacity">
+    <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+  </div>
+
+  <div class="bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-transform duration-300 sm:max-w-2xl sm:w-full scale-95 hover:scale-100">
+    <div class="bg-gradient-to-r from-green-400 to-blue-500 px-6 pt-6 pb-6 sm:pt-8 sm:pb-8">
+      <h3 class="text-2xl leading-8 font-bold text-white mb-4">
+        Restaurant Added Succsessfully
+      </h3>
+      <div class="mt-4">
+        <ul class="list-disc list-inside text-lg">
+          <li>
+            <span class="text-white font-semibold pr-2">Name of Restaurant: </span>{{ restaurantDetails.name }}
+          </li>
+          <li>
+            <span class="text-white font-semibold pr-2">Owner of Restaurant: </span>{{ restaurantDetails.owner }}
+          </li>
+          <li>
+            <span class="text-white font-semibold pr-2">Street of Restaurant: </span>{{ restaurantDetails.streetName }}
+          </li>
+          <li>
+            <span class="text-white font-semibold pr-2">City of Restaurant: </span>{{ restaurantDetails.city }}
+          </li>
+          <li>
+            <span class="text-white font-semibold pr-2">Phone No.: </span>{{ restaurantDetails.contact }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="bg-gray-50 px-6 py-4 sm:px-8 sm:py-6 sm:flex sm:flex-row-reverse">
+      <button
+        type="button"
+        class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-700 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-lg"
+        (click)="handleAccept()"
+      >
+        Ok
+      </button>
+    </div>
+  </div>
+</div>

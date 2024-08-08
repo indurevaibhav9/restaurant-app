@@ -1,0 +1,38 @@
+.home-page {
+    padding-top: 60px; /* Adjust according to the header height */
+    padding: 20px;
+  }
+  
+  .home-page section {
+    margin-bottom: 40px;
+  }
+  
+  .home-page .intro {
+    text-align: center;
+  }
+  
+  .home-page .steps ol {
+    list-style-type: decimal;
+    padding-left: 20px;
+  }
+  
+  .home-page .contact,
+  .home-page .privacy-policy {
+    background-color: gray;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .home-page .contact p,
+  .home-page .privacy-policy p {
+    margin: 10px 0;
+  }
+  
+  .text-gradient {
+    background: linear-gradient(90deg, #FFDD00, #FBB034, #FF4C4C, #FFF98C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+  
